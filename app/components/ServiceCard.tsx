@@ -31,7 +31,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
   return (
     <motion.div
-      className="group bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+      className="group bg-white rounded-xl p-6 md:p-8 shadow-md transition-all duration-300 border border-gray-100"
       variants={staggerItem}
       style={{ padding: "30px" }}
     >

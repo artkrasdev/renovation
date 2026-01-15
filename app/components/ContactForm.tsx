@@ -142,6 +142,7 @@ export default function ContactForm() {
     <motion.form
       onSubmit={handleSubmit}
       className="space-y-5"
+      style={{ display: "flex", flexDirection: "column", gap: "22px", marginTop: "25px" }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -291,34 +292,25 @@ export default function ContactForm() {
       </motion.div>
 
       {/* Submit button */}
-      <motion.div variants={fadeInUp}>
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full md:w-auto px-8 py-4 bg-[var(--color-dark)] text-white font-medium rounded-full hover:bg-[var(--color-dark-light)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              Envoi en cours...
-            </>
-          ) : (
-            <>
-              Envoyer le Message
-              <Send className="w-5 h-5" />
-            </>
-          )}
-        </button>
-      </motion.div>
-
-      {/* Privacy note */}
-      <motion.p
-        className="text-xs text-[var(--color-text-muted)]"
+      <motion.button
+        type="submit"
+        disabled={isSubmitting}
         variants={fadeInUp}
+        className="w-full px-8 py-4 bg-[var(--color-primary)] text-white font-medium hover:bg-[var(--color-dark-light)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+        style={{ gap: "17px", borderRadius: "13px" }}
       >
-        En soumettant ce formulaire, vous acceptez notre politique de confidentialité.
-        Vos données ne seront jamais partagées avec des tiers.
-      </motion.p>
+        {isSubmitting ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" />
+            Envoi en cours...
+          </>
+        ) : (
+          <>
+            Envoyer le Message
+            <Send className="w-5 h-5" />
+          </>
+        )}
+      </motion.button>
     </motion.form>
   );
 }

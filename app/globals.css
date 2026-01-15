@@ -67,7 +67,6 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
 }
 
 html {
@@ -145,7 +144,6 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: none;
-  background: none;
 }
 
 /* Image optimization */
@@ -188,21 +186,21 @@ select {
 
 /* Header padding to match sections */
 .header-padding {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 @media (min-width: 768px) {
   .header-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
 @media (min-width: 1024px) {
   .header-padding {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 

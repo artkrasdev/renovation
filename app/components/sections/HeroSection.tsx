@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Play } from "lucide-react";
+import { Star } from "lucide-react";
 import Button from "@/app/components/ui/Button";
 import StatCard from "@/app/components/StatCard";
 import { heroContent, stats } from "@/app/data/content";
@@ -21,7 +21,7 @@ export default function HeroSection() {
       <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-72 h-72 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
 
-      <div className="container-custom mx-auto px-4 md:px-6 relative z-10">
+      <div className="container-custom mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <motion.div
@@ -70,14 +70,14 @@ export default function HeroSection() {
               <Button
                 href="#contact"
                 variant="primary"
-                size="lg"
+                size="md"
               >
                 {heroContent.ctaText}
               </Button>
               <Button
                 href="#services"
                 variant="outline"
-                size="lg"
+                size="md"
               >
                 {heroContent.ctaSecondary}
               </Button>
@@ -120,7 +120,7 @@ export default function HeroSection() {
 
             {/* Secondary image - overlapping */}
             <motion.div
-              className="absolute -bottom-8 -left-8 z-30 w-64 rounded-2xl overflow-hidden shadow-xl border-4 border-white"
+              className="absolute -bottom-20 left-10 z-30 w-64 rounded-2xl overflow-hidden shadow-xl border-4 border-white"
               variants={slideInLeft}
               initial="hidden"
               animate="visible"
@@ -137,23 +137,43 @@ export default function HeroSection() {
 
             {/* Decorative badge */}
             <motion.div
-              className="absolute top-8 -right-4 z-30 bg-white rounded-2xl p-4 md:p-5 shadow-lg"
+              className="absolute top-8 -right-4 z-30 bg-white rounded-2xl shadow-lg"
               variants={fadeIn}
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.5 }}
-              style={{ width: "fit-content", left: "357px", top: "-34px" }}
+              style={{ width: "fit-content", left: "325px", top: "-35px", padding: "15px" }}
             >
-              <div className="flex items-center gap-3" style={{ width: "fit-content", justifyContent: "center", padding: "10px 23px" }}>
-                <div className="w-12 h-12 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center shrink-0">
-                  <Play className="w-6 h-6 text-[var(--color-primary)] ml-1" fill="currentColor" />
-                </div>
+              <div className="flex items-center gap-3 w-fit justify-center ps-[10px] pe-[23px]">
+                <Image
+                  src="/maps.png"
+                  alt="Google Maps"
+                  width={24}
+                  height={24}
+                  className="w-8 h-8 shrink-0"
+                />
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-[var(--color-text-primary)]">
-                    Voir nos
-                  </p>
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-base font-bold text-[var(--color-text-primary)]">4.4</span>
+                    <span className="text-xs text-[var(--color-text-secondary)]">/5</span>
+                    <div className="flex items-center gap-0.5 ml-1">
+                      {[1, 2, 3, 4].map((star) => (
+                        <Star
+                          key={star}
+                          className="w-3 h-3 text-yellow-400 fill-yellow-400"
+                        />
+                      ))}
+                      {/* Half star */}
+                      <div className="relative w-3 h-3">
+                        <Star className="absolute w-3 h-3 text-gray-300" />
+                        <div className="absolute overflow-hidden w-[50%] h-full">
+                          <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <p className="text-xs text-[var(--color-text-secondary)]">
-                    Réalisations
+                    Google Maps
                   </p>
                 </div>
               </div>

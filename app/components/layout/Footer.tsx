@@ -1,148 +1,143 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { Phone, Mail, MapPin } from "lucide-react";
-import { companyInfo, footerContent } from "@/app/data/content";
-import { fadeInUp, staggerContainer, staggerItem } from "@/app/lib/animations";
+import Link from "next/link";
+import { companyInfo } from "@/app/data/content";
 
-export default function Footer() {
+const legalLinks = [
+  { label: "Mentions légales", href: "/mentions-legales" },
+  { label: "Politique de confidentialité", href: "/politique-confidentialite" },
+  { label: "Gestion des cookies", href: "/cookies" },
+];
+
+const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--color-dark)] text-white">
-      <div className="container-custom mx-auto px-4 md:px-6">
-        {/* Main footer content */}
-        <motion.div
-          className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          {/* Company info */}
-          <motion.div variants={staggerItem} className="lg:col-span-1">
-            <div className="mb-6">
+    <footer className="bg-[#1A1A1A] text-gray-100">
+      {/* Main Footer Content */}
+      <div className="container-custom py-12 px-[1.5rem] md:px-[2.5rem]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          {/* Logo & Description */}
+          <div className="flex flex-col gap-5">
+            <a href="#accueil" aria-label="Retour à l'accueil">
               <Image
-                src="/logo.jpg"
-                alt="Smailji Multi-Services"
-                width={150}
-                height={75}
-                className="h-12 w-auto object-contain brightness-0 invert"
+                src="/logo.png"
+                alt={`${companyInfo.name} logo`}
+                width={140}
+                height={60}
+                className="h-12 w-auto object-contain"
+                priority
               />
-            </div>
-            <p className="text-gray-400 leading-relaxed mb-6">
-              {footerContent.description}
+            </a>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Votre partenaire de confiance pour tous vos projets de rénovation
+              en région parisienne.
             </p>
-          </motion.div>
+          </div>
 
-          {/* Quick links */}
-          <motion.div variants={staggerItem}>
-            <h4
-              className="text-lg font-semibold mb-6 text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
-            >
-              Liens Rapides
-            </h4>
-            <ul className="space-y-3">
-              {footerContent.quickLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-[var(--color-primary-light)] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Services */}
-          <motion.div variants={staggerItem}>
-            <h4
-              className="text-lg font-semibold mb-6 text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
-            >
-              Nos Services
-            </h4>
-            <ul className="space-y-3">
-              {footerContent.serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-[var(--color-primary-light)] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact info */}
-          <motion.div variants={staggerItem}>
-            <h4
-              className="text-lg font-semibold mb-6 text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
-            >
-              Contact
-            </h4>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href={`tel:${companyInfo.phone.replace(/\s/g, "")}`}
-                  className="flex items-start gap-3 text-gray-400 hover:text-[var(--color-primary-light)] transition-colors"
+          {/* Legal Links */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-white font-semibold text-lg">Informations</h3>
+            <nav className="flex flex-col gap-4">
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-gray-400 hover:text-[var(--color-primary)] transition-colors"
                 >
-                  <Phone className="w-5 h-5 shrink-0 mt-0.5" />
-                  <span>{companyInfo.phone}</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${companyInfo.email}`}
-                  className="flex items-start gap-3 text-gray-400 hover:text-[var(--color-primary-light)] transition-colors"
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Contact Info */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-white font-semibold text-lg" style={{ color: "var(--color-white)" }}>Contact</h3>
+            <div className="flex flex-col gap-4 text-sm" style={{ color: "var(--color-white)" }}>
+              <a
+                href={`tel:${companyInfo.phone.replace(/\s+/g, "")}`}
+                className="flex items-center gap-2 hover:text-[var(--color-primary)] transition-colors"
+              >
+                <svg
+                  className="w-4 h-4 text-[var(--color-primary)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <Mail className="w-5 h-5 shrink-0 mt-0.5" />
-                  <span>{companyInfo.email}</span>
-                </a>
-              </li>
-              <li className="flex items-start gap-3 text-gray-400">
-                <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                {companyInfo.phone}
+              </a>
+              <a
+                href={`mailto:${companyInfo.email}`}
+                className="flex items-center gap-2 hover:text-[var(--color-primary)] transition-colors"
+              >
+                <svg
+                  className="w-4 h-4 text-[var(--color-primary)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                {companyInfo.email}
+              </a>
+              <p className="flex items-start gap-2">
+                <svg
+                  className="w-4 h-4 text-[var(--color-primary)] mt-0.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
                 <span>
                   {companyInfo.address.street}
                   <br />
                   {companyInfo.address.postalCode} {companyInfo.address.city}
-                  <br />
-                  {companyInfo.address.country}
                 </span>
-              </li>
-            </ul>
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom bar */}
-        <motion.div
-          className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-500 text-sm text-center md:text-left">
-            © {currentYear} {companyInfo.name}. Tous droits réservés.
-          </p>
-          <div className="flex items-center gap-6 text-sm text-gray-500">
-            <a href="#" className="hover:text-[var(--color-primary-light)] transition-colors">
-              Mentions Légales
-            </a>
-            <a href="#" className="hover:text-[var(--color-primary-light)] transition-colors">
-              Politique de Confidentialité
-            </a>
+              </p>
+            </div>
           </div>
-        </motion.div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-[var(--color-gray-500)]" style={{ boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.15)" }}>
+        <div className="container-custom py-4 px-[1.5rem] md:px-[2.5rem]" style={{ color: "var(--color-gray-500)" }}>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2 text-xs">
+            <p>
+              © {currentYear} {companyInfo.name} — Tous droits réservés
+            </p>
+            <p>
+              SIRET : {companyInfo.siret} — RCS {companyInfo.rcs}
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );
-}
+};
 
+export default Footer;

@@ -28,42 +28,20 @@ export default function FAQSection() {
           subtitle={sectionTitles.faq.subtitle}
         />
 
+        {/* Left column */}
         <motion.div
-          className="grid lg:grid-cols-2 gap-8 my-[30px]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
+          className="bg-[var(--color-off-white)] rounded-2xl p-6 md:p-8"
+          variants={staggerItem}
+          style={{ width: "100%", marginTop: "30px", marginBottom: "30px", marginLeft: "0px", marginRight: "0px" }}
         >
-          {/* Left column */}
-          <motion.div
-            className="bg-[var(--color-off-white)] rounded-2xl p-6 md:p-8"
-            variants={staggerItem}
-          >
-            {leftColumn.map((item, index) => (
-              <FAQItem
-                key={item.id}
-                item={item}
-                isOpen={openIndex === index}
-                onToggle={() => handleToggle(index)}
-              />
-            ))}
-          </motion.div>
-
-          {/* Right column */}
-          <motion.div
-            className="bg-[var(--color-off-white)] rounded-2xl p-6 md:p-8"
-            variants={staggerItem}
-          >
-            {rightColumn.map((item, index) => (
-              <FAQItem
-                key={item.id}
-                item={item}
-                isOpen={openIndex === index + midpoint}
-                onToggle={() => handleToggle(index + midpoint)}
-              />
-            ))}
-          </motion.div>
+          {leftColumn.map((item, index) => (
+            <FAQItem
+              key={item.id}
+              item={item}
+              isOpen={openIndex === index}
+              onToggle={() => handleToggle(index)}
+            />
+          ))}
         </motion.div>
 
         {/* Still have questions CTA */}

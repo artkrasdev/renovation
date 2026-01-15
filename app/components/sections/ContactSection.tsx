@@ -60,6 +60,7 @@ export default function ContactSection() {
           {/* Contact form */}
           <motion.div
             className="bg-white rounded-2xl p-6 md:p-8 shadow-lg"
+            style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -77,6 +78,7 @@ export default function ContactSection() {
           {/* Contact info & Map */}
           <motion.div
             className="space-y-6"
+            style={{ display: "flex", flexDirection: "column", gap: "22px" }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -91,17 +93,16 @@ export default function ContactSection() {
                 const IconComponent = info.icon;
                 const content = (
                   <motion.div
-                    className={`p-5 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow ${
+                    className={`p-5 bg-white rounded-xl shadow-md transition-shadow h-full ${
                       info.href ? "cursor-pointer" : ""
                     }`}
                     variants={staggerItem}
-                    whileHover={{ y: -2 }}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-4" style={{ height: "fit-content" }}>
                       <div className="w-12 h-12 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center shrink-0">
                         <IconComponent className="w-6 h-6 text-[var(--color-primary)]" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <p className="text-sm text-[var(--color-text-muted)] mb-1">
                           {info.label}
                         </p>
@@ -119,11 +120,12 @@ export default function ContactSection() {
                     href={info.href}
                     target={info.href.startsWith("http") ? "_blank" : undefined}
                     rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="h-full"
                   >
                     {content}
                   </a>
                 ) : (
-                  <div key={index}>{content}</div>
+                  <div key={index} className="h-full">{content}</div>
                 );
               })}
             </motion.div>
@@ -134,18 +136,6 @@ export default function ContactSection() {
               variants={fadeInUp}
             >
               <Map />
-            </motion.div>
-
-            {/* Service area note */}
-            <motion.div
-              className="bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20 rounded-xl p-4"
-              variants={fadeInUp}
-            >
-              <p className="text-sm text-[var(--color-text-secondary)]">
-                <strong className="text-[var(--color-primary)]">Zone d&apos;intervention :</strong>{" "}
-                Nous intervenons à Paris et dans toute l&apos;Île-de-France (rayon de 30km environ).
-                Le cercle sur la carte indique notre zone de service principale.
-              </p>
             </motion.div>
           </motion.div>
         </div>

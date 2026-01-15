@@ -15,7 +15,6 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
     <motion.div
       className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 h-full flex flex-col"
       variants={staggerItem}
-      whileHover={{ y: -4 }}
     >
       {/* Quote icon */}
       <div className="mb-4">

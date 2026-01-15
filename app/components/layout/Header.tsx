@@ -47,7 +47,7 @@ export default function Header() {
             className="flex items-center gap-2"
           >
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Smailji Multi-Services"
               width={120}
               height={60}

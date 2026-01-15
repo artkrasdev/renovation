@@ -99,5 +99,7 @@ export interface CompanyInfo {
     linkedin?: string;
     twitter?: string;
   };
+  siret?: string;
+  rcs?: string;
 }
 

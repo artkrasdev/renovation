@@ -14,7 +14,6 @@ export default function TeamMemberCard({ member }: TeamMemberCardProps) {
     <motion.div
       className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
       variants={staggerItem}
-      whileHover={{ y: -8 }}
     >
       {/* Image container */}
       <div className="relative h-72 overflow-hidden">

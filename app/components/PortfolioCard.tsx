@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Eye, ArrowLeftRight } from "lucide-react";
 import { staggerItem } from "@/app/lib/animations";
 
 interface PortfolioCardProps {
@@ -21,77 +19,44 @@ export default function PortfolioCard({
   afterImage,
   onViewClick,
 }: PortfolioCardProps) {
-  const [showAfter, setShowAfter] = useState(true);
-
   return (
     <motion.div
-      className="group relative rounded-2xl overflow-hidden shadow-lg bg-white"
+      className="group relative rounded-2xl overflow-hidden shadow-lg bg-white p- border border-gray-500/10"
       variants={staggerItem}
-      whileHover={{ y: -4 }}
     >
       {/* Image container with aspect ratio */}
-      <div className="relative aspect-[4/3] overflow-hidden">
-        {/* Before image */}
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+        {/* Before image (default) */}
         <Image
           src={beforeImage}
           alt={`${title} - Avant`}
           fill
-          className={`object-cover transition-opacity duration-500 ${
-            showAfter ? "opacity-0" : "opacity-100"
-          }`}
+          className="object-cover transition-all duration-500 group-hover:scale-105"
         />
-        {/* After image */}
+        
+        {/* After image (on hover) */}
         <Image
           src={afterImage}
           alt={`${title} - Après`}
           fill
-          className={`object-cover transition-opacity duration-500 ${
-            showAfter ? "opacity-100" : "opacity-0"
-          }`}
+          className="object-cover transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:scale-105"
         />
 
-        {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          {/* Toggle before/after button */}
-          <button
-            onClick={() => setShowAfter(!showAfter)}
-            className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
-            aria-label={showAfter ? "Voir avant" : "Voir après"}
-          >
-            <ArrowLeftRight className="w-5 h-5 text-[var(--color-dark)]" />
-          </button>
+        {/* Gradient overlay for text visibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-          {/* View full button */}
-          {onViewClick && (
-            <button
-              onClick={onViewClick}
-              className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
-              aria-label="Voir en grand"
-            >
-              <Eye className="w-5 h-5 text-[var(--color-dark)]" />
-            </button>
-          )}
-        </div>
-
-        {/* Before/After label */}
-        <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-white/90 text-[var(--color-dark)] text-sm font-medium rounded-full">
-            {showAfter ? "Après" : "Avant"}
+        {/* Content positioned absolutely at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+          <span className="text-xs font-medium text-white/80 uppercase tracking-wider">
+            {category}
           </span>
+          <h3
+            className="mt-1 text-lg font-semibold !text-white"
+            style={{ fontFamily: "var(--font-poppins)" }}
+          >
+            {title}
+          </h3>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5">
-        <span className="text-xs font-medium text-[var(--color-primary)] uppercase tracking-wider">
-          {category}
-        </span>
-        <h3
-          className="mt-1 text-lg font-semibold text-[var(--color-text-primary)]"
-          style={{ fontFamily: "var(--font-poppins)" }}
-        >
-          {title}
-        </h3>
       </div>
     </motion.div>
   );

@@ -33,13 +33,13 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      "bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] focus:ring-[var(--color-dark)]",
+      "bg-[var(--color-primary)] !text-white hover:bg-[var(--color-primary-dark)] hover:text-white focus:ring-[var(--color-primary)]",
     secondary:
-      "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] focus:ring-[var(--color-primary)]",
+      "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] hover:text-white focus:ring-[var(--color-primary)]",
     outline:
-      "border-2 border-[var(--color-dark)] text-[var(--color-dark)] hover:bg-[var(--color-dark)] hover:text-white focus:ring-[var(--color-dark)]",
+      "border-1 border-[var(--color-dark)] text-[var(--color-dark)] bg-transparent hover:bg-[var(--color-dark)] hover:!text-white focus:ring-[var(--color-dark)]",
     ghost:
-      "text-[var(--color-dark)] hover:bg-gray-100 focus:ring-gray-300",
+      "text-[var(--color-dark)] hover:bg-gray-100 hover:text-[var(--color-dark)] focus:ring-gray-300",
   };
 
   const sizeStyles = {
@@ -54,16 +54,9 @@ export default function Button({
 
   const content = (
     <>
-      {icon && iconPosition === "left" && <span className="shrink-0" style={{ color: variant === "primary" ? "var(--color-white)" : undefined }}>{icon}</span>}
-      <span 
-        style={{ 
-          color: variant === "primary" ? "var(--color-white)" : undefined,
-          padding: variant === "outline" ? "5px 15px" : undefined
-        }}
-      >
-        {children}
-      </span>
-      {icon && iconPosition === "right" && <span className="shrink-0" style={{ color: variant === "primary" ? "var(--color-white)" : undefined }}>{icon}</span>}
+      {icon && iconPosition === "left" && <span className="shrink-0">{icon}</span>}
+      <span>{children}</span>
+      {icon && iconPosition === "right" && <span className="shrink-0">{icon}</span>}
     </>
   );
 
@@ -76,7 +69,6 @@ export default function Button({
         initial="rest"
         whileHover={disabled ? undefined : "hover"}
         whileTap={disabled ? undefined : "tap"}
-        style={variant === "primary" ? { paddingTop: "5px", paddingBottom: "5px", paddingLeft: "15px", paddingRight: "15px" } : undefined}
       >
         {content}
       </motion.a>

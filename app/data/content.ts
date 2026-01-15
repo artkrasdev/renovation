@@ -8,20 +8,22 @@ export const companyInfo: CompanyInfo = {
   phone: "+33 1 23 45 67 89",
   email: "contact@smailji-multiservices.fr",
   address: {
-    street: "15 Avenue des Champs-Élysées",
-    city: "Paris",
-    postalCode: "75008",
+    street: "25 rue Joseph Pupier",
+    city: "Saint-Étienne",
+    postalCode: "42100",
     country: "France",
   },
   coordinates: {
-    lat: 48.8698,
-    lng: 2.3075,
+    lat: 45.4397,
+    lng: 4.3872,
   },
   socialMedia: {
     facebook: "https://facebook.com/smailji-multiservices",
     instagram: "https://instagram.com/smailji_multiservices",
     linkedin: "https://linkedin.com/company/smailji-multiservices",
   },
+  siret: "123 456 789 00012",
+  rcs: "Paris",
 };
 
 export const navigation: NavItem[] = [
