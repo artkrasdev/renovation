@@ -23,7 +23,6 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "Le salon lumineux avec ses grandes fenêtres d'origine.",
       },
     ],
-    tags: ["Haussmannien", "Parquet", "Moulures"],
   },
   {
     id: "2",
@@ -42,7 +41,6 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "Nouvelle cuisine équipée avec îlot central et électroménagers intégrés.",
       },
     ],
-    tags: ["Cuisine", "Moderne", "Îlot"],
   },
   {
     id: "3",
@@ -61,7 +59,6 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "Salle de bain moderne avec douche à l'italienne et ambiance spa.",
       },
     ],
-    tags: ["Salle de bain", "Spa", "Luxe"],
   },
   {
     id: "4",
@@ -85,7 +82,6 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "Détails des finitions industrielles chic.",
       },
     ],
-    tags: ["Loft", "Industriel", "Open Space"],
   },
   {
     id: "5",
@@ -104,7 +100,6 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "Studio réaménagé avec rangements intégrés et espace optimisé.",
       },
     ],
-    tags: ["Studio", "Optimisation", "Rangement"],
   },
   {
     id: "6",
@@ -123,6 +118,5 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "Salon contemporain avec mobilier design et éclairage soigné.",
       },
     ],
-    tags: ["Salon", "Contemporain", "Design"],
   },
 ];
