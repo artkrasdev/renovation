@@ -1,24 +1,18 @@
 "use client";
 
-"use client";
-
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import AutoScroll from 'embla-carousel-auto-scroll'
 import { urlFor } from '@/app/lib/sanity'
 import { Testimonial } from '@/app/types'
 
 interface ReviewCarouselProps {
   reviews: Testimonial[];
-  scroll?: boolean;
   direction?: 'x' | 'y';
-  dir?: 'forward' | 'backward';
 }
 
-export default function ReviewCarousel({ reviews, scroll, direction = 'x', dir = 'forward' }: ReviewCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, axis: `${direction}` },  scroll ? [AutoScroll({ playOnInit: true, speed: 0.3, direction: `${dir}`})] : 
-  [Autoplay({delay: 3000})]);
+export default function ReviewCarousel({ reviews, direction = 'x' }: ReviewCarouselProps) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, axis: `${direction}` }, [Autoplay({delay: 3000})]);
 
   const isDirectionY = direction == "y";
 
