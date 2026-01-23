@@ -12,7 +12,7 @@ interface ReviewCarouselProps {
 }
 
 export default function ReviewCarousel({ reviews, direction = 'x' }: ReviewCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, axis: `${direction}` }, [Autoplay({delay: 3000})]);
+  const [emblaRef] = useEmblaCarousel({ loop: true, axis: `${direction}` }, [Autoplay({delay: 3000})]);
 
   const isDirectionY = direction == "y";
 
