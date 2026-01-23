@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  transpilePackages: ['sanity', '@sanity/vision'],
 };
 
 export default nextConfig;

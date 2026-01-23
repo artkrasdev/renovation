@@ -1,6 +1,5 @@
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
-import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import {projectId, dataset} from './sanity.env'
 
@@ -9,7 +8,8 @@ export default defineConfig({
   title: 'CMS Rénovation',
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  basePath: '/dashboard',
+  plugins: [deskTool()],
   schema: {
     types: schemaTypes,
   },
