@@ -3,17 +3,30 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import ServiceCard from "@/app/components/ServiceCard";
-import { sectionTitles } from "@/app/data/content";
-import { services } from "@/app/data/services";
 import { staggerContainer } from "@/app/lib/animations";
 
-export default function ServicesSection() {
+interface ServicesSectionProps {
+  sectionTitle: {
+    title: string;
+    subtitle: string;
+  };
+  services: Array<{
+    _id: string;
+    title: string;
+    description: string;
+    icon: string;
+    features?: string[];
+    image?: any;
+  }>;
+}
+
+export default function ServicesSection({ sectionTitle, services }: ServicesSectionProps) {
   return (
     <section id="services" className="section-padding bg-[var(--color-off-white)]">
       <div className="container-custom mx-auto px-4 md:px-6">
         <SectionHeading
-          title={sectionTitles.services.title}
-          subtitle={sectionTitles.services.subtitle}
+          title={sectionTitle.title}
+          subtitle={sectionTitle.subtitle}
         />
 
         <motion.div
@@ -25,7 +38,13 @@ export default function ServicesSection() {
           style={{ marginTop: "30px", marginBottom: "30px" }}
         >
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <ServiceCard key={service._id} service={{
+              id: service._id,
+              title: service.title,
+              description: service.description,
+              icon: service.icon,
+              features: service.features,
+            }} />
           ))}
         </motion.div>
       </div>

@@ -2,26 +2,15 @@ import { CompanyInfo, NavItem, StatItem, ProcessStep } from "../types";
 
 export const companyInfo: CompanyInfo = {
   name: "Smailji Multi-Services",
-  tagline: "Experts en Rénovation d'Appartements",
-  description:
-    "Transformez votre espace de vie avec notre expertise en rénovation. De la conception à la réalisation, nous donnons vie à vos projets avec précision et passion.",
-  phone: "+33 1 23 45 67 89",
+  phone: "+33 7 64 17 78 40",
   email: "contact@smailji-multiservices.fr",
   address: {
-    street: "25 rue J-oseph Pupier",
+    street: "25 rue Joseph Pupier",
     city: "Saint-Étienne",
     postalCode: "42100",
     country: "France",
   },
-  coordinates: {
-    lat: 45.4397,
-    lng: 4.3872,
-  },
-  socialMedia: {
-    facebook: "https://facebook.com/smailji-multiservices",
-    instagram: "https://instagram.com/smailji_multiservices",
-    linkedin: "https://linkedin.com/company/smailji-multiservices",
-  },
+  businessHours: "Lun - Sam: 8h - 19h",
   siret: "123 456 789 00012",
   rcs: "Paris",
 };

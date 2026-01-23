@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ClipboardList, PenTool, CheckCircle, LucideIcon } from "lucide-react";
 import SectionHeading from "@/app/components/ui/SectionHeading";
-import { sectionTitles, processSteps } from "@/app/data/content";
 import { fadeInUp, staggerContainer, staggerItem, slideInLeft, slideInRight } from "@/app/lib/animations";
+import { urlFor } from "@/app/lib/sanity";
 
 const iconMap: Record<string, LucideIcon> = {
   ClipboardList,
@@ -13,13 +13,33 @@ const iconMap: Record<string, LucideIcon> = {
   CheckCircle,
 };
 
-export default function ProcessSection() {
+interface ProcessSectionProps {
+  sectionTitle: {
+    title: string;
+    subtitle: string;
+  };
+  processSteps: Array<{
+    id: number;
+    title: string;
+    description: string;
+    icon: string;
+  }>;
+  processImage?: {
+    image: any;
+    alt?: string;
+  };
+}
+
+export default function ProcessSection({ sectionTitle, processSteps, processImage }: ProcessSectionProps) {
+  const imageUrl = processImage?.image 
+    ? urlFor(processImage.image).width(600).height(750).url() 
+    : "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=1000&fit=crop";
   return (
     <section className="section-padding bg-[var(--color-off-white)]">
       <div className="container-custom mx-auto px-4 md:px-6">
         <SectionHeading
-          title={sectionTitles.process.title}
-          subtitle={sectionTitles.process.subtitle}
+          title={sectionTitle.title}
+          subtitle={sectionTitle.subtitle}
         />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center" style={{ marginTop: "30px", marginBottom: "30px" }}>
@@ -85,8 +105,8 @@ export default function ProcessSection() {
               variants={slideInRight}
             >
               <Image
-                src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=1000&fit=crop"
-                alt="Processus de rénovation"
+                src={imageUrl}
+                alt={processImage?.alt || "Processus de rénovation"}
                 width={600}
                 height={750}
                 className="object-cover w-full"

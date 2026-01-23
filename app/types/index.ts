@@ -49,7 +49,6 @@ export interface PortfolioProject {
   category: string;
   description: string;
   images: PortfolioImage[];
-  tags?: string[];
 }
 
 // Contact form data type
@@ -85,8 +84,6 @@ export interface ProcessStep {
 // Company info type
 export interface CompanyInfo {
   name: string;
-  tagline: string;
-  description: string;
   phone: string;
   email: string;
   address: {
@@ -95,16 +92,7 @@ export interface CompanyInfo {
     postalCode: string;
     country: string;
   };
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  socialMedia: {
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
+  businessHours?: string;
   siret?: string;
   rcs?: string;
 }

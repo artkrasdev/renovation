@@ -1,25 +1,39 @@
-import { getHeroContent, getStats } from "@/app/lib/sanity/queries";
-import HeroSectionClient from "./HeroSectionClient";
-import { heroContent as fallbackHeroContent, stats as fallbackStats } from "@/app/data/content";
+"use client";
 
-export default async function HeroSection() {
-  let heroContent, stats;
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Star } from "lucide-react";
+import Button from "@/app/components/ui/Button";
+import StatCard from "@/app/components/StatCard";
+import { fadeInUp, fadeIn, slideInLeft, slideInRight, staggerContainer } from "@/app/lib/animations";
+import { urlFor } from "@/app/lib/sanity";
+
+interface HeroSectionClientProps {
+  heroContent: {
+    title: string;
+    subtitle: string;
+    ctaText: string;
+    ctaSecondary: string;
+    badgeText?: string;
+    mainImage?: any;
+    secondaryImage?: any;
+  };
+  stats: Array<{
+    value: number;
+    suffix: string;
+    label: string;
+  }>;
+}
+
+export default function HeroSectionClient({ heroContent, stats }: HeroSectionClientProps) {
+  const mainImageUrl = heroContent.mainImage 
+    ? urlFor(heroContent.mainImage).width(800).height(600).url() 
+    : "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop";
   
-  try {
-    const [heroData, statsData] = await Promise.all([
-      getHeroContent(),
-      getStats(),
-    ]);
-    
-    heroContent = heroData || fallbackHeroContent;
-    stats = statsData && statsData.length > 0 ? statsData : fallbackStats;
-  } catch (error) {
-    console.error("Error fetching hero content:", error);
-    heroContent = fallbackHeroContent;
-    stats = fallbackStats;
-  }
+  const secondaryImageUrl = heroContent.secondaryImage 
+    ? urlFor(heroContent.secondaryImage).width(400).height(300).url() 
+    : "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop";
 
-  return <HeroSectionClient heroContent={heroContent} stats={stats} />;
   return (
     <section
       id="accueil"
@@ -42,16 +56,18 @@ export default async function HeroSection() {
             variants={staggerContainer}
             style={{ display: "flex", flexDirection: "column", gap: "18px" }}
           >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)]/10 rounded-full mb-6"
-              variants={fadeInUp}
-              style={{ paddingTop: "5px", paddingBottom: "5px", paddingLeft: "15px", paddingRight: "15px", width: "fit-content" }}
-            >
-              <span className="w-2 h-2 bg-[var(--color-primary)] rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-[var(--color-primary)]">
-                Experts en Rénovation depuis 2009
-              </span>
-            </motion.div>
+            {heroContent.badgeText && (
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)]/10 rounded-full mb-6"
+                variants={fadeInUp}
+                style={{ paddingTop: "5px", paddingBottom: "5px", paddingLeft: "15px", paddingRight: "15px", width: "fit-content" }}
+              >
+                <span className="w-2 h-2 bg-[var(--color-primary)] rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-[var(--color-primary)]">
+                  {heroContent.badgeText}
+                </span>
+              </motion.div>
+            )}
 
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
@@ -119,7 +135,7 @@ export default async function HeroSection() {
               variants={slideInRight}
             >
               <Image
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop"
+                src={mainImageUrl}
                 alt="Rénovation d'intérieur moderne"
                 width={600}
                 height={450}
@@ -138,7 +154,7 @@ export default async function HeroSection() {
               transition={{ delay: 0.3 }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop"
+                src={secondaryImageUrl}
                 alt="Cuisine rénovée"
                 width={256}
                 height={192}
@@ -212,4 +228,3 @@ export default async function HeroSection() {
     </section>
   );
 }
-

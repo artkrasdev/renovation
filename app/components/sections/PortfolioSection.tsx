@@ -5,12 +5,28 @@ import { motion } from "framer-motion";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import PortfolioCard from "@/app/components/PortfolioCard";
 import PortfolioModal from "@/app/components/PortfolioModal";
-import { sectionTitles } from "@/app/data/content";
-import { portfolioProjects } from "@/app/data/portfolio";
 import { staggerContainer } from "@/app/lib/animations";
 import { PortfolioProject } from "@/app/types";
 
-export default function PortfolioSection() {
+interface PortfolioSectionProps {
+  sectionTitle: {
+    title: string;
+    subtitle: string;
+  };
+  projects: Array<{
+    _id: string;
+    title: string;
+    category: string;
+    description: string;
+    images: Array<{
+      src: string;
+      alt?: string;
+      description?: string;
+    }>;
+  }>;
+}
+
+export default function PortfolioSection({ sectionTitle, projects }: PortfolioSectionProps) {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,12 +39,21 @@ export default function PortfolioSection() {
     setIsModalOpen(false);
   };
 
+  // Convert Sanity projects to PortfolioProject format
+  const portfolioProjects: PortfolioProject[] = projects.map(project => ({
+    id: project._id,
+    title: project.title,
+    category: project.category,
+    description: project.description,
+    images: project.images,
+  }));
+
   return (
     <section id="portfolio" className="section-padding bg-white">
       <div className="container-custom mx-auto px-4 md:px-6">
         <SectionHeading
-          title={sectionTitles.portfolio.title}
-          subtitle={sectionTitles.portfolio.subtitle}
+          title={sectionTitle.title}
+          subtitle={sectionTitle.subtitle}
         />
 
         <motion.div

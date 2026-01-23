@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import ContactForm from "@/app/components/ContactForm";
-import { sectionTitles, companyInfo } from "@/app/data/content";
+import { CompanyInfo } from "@/app/types";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer, staggerItem } from "@/app/lib/animations";
 
 // Dynamic import for the map to avoid SSR issues with Leaflet
@@ -18,42 +18,49 @@ const Map = dynamic(() => import("@/app/components/Map"), {
   ),
 });
 
-const contactInfo = [
-  {
-    icon: Phone,
-    label: "Téléphone",
-    value: companyInfo.phone,
-    href: `tel:${companyInfo.phone.replace(/\s/g, "")}`,
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: companyInfo.email,
-    href: `mailto:${companyInfo.email}`,
-  },
-  {
-    icon: MapPin,
-    label: "Adresse",
-    value: `${companyInfo.address.street}, ${companyInfo.address.postalCode} ${companyInfo.address.city}`,
-    href: `https://maps.google.com/?q=${encodeURIComponent(
-      `${companyInfo.address.street}, ${companyInfo.address.postalCode} ${companyInfo.address.city}`
-    )}`,
-  },
-  {
-    icon: Clock,
-    label: "Horaires",
-    value: "Lun - Sam: 8h - 19h",
-    href: null,
-  },
-];
+interface ContactSectionProps {
+  sectionTitle: {
+    title: string;
+    subtitle: string;
+  };
+  companyInfo: CompanyInfo & { businessHours?: string };
+}
 
-export default function ContactSection() {
+export default function ContactSection({ sectionTitle, companyInfo }: ContactSectionProps) {
+  const contactInfo = [
+    {
+      icon: Phone,
+      label: "Téléphone",
+      value: companyInfo.phone,
+      href: `tel:${companyInfo.phone.replace(/\s/g, "")}`,
+    },
+    {
+      icon: Mail,
+      label: "Email",
+      value: companyInfo.email,
+      href: `mailto:${companyInfo.email}`,
+    },
+    {
+      icon: MapPin,
+      label: "Adresse",
+      value: `${companyInfo.address.street}, ${companyInfo.address.postalCode} ${companyInfo.address.city}`,
+      href: `https://maps.google.com/?q=${encodeURIComponent(
+        `${companyInfo.address.street}, ${companyInfo.address.postalCode} ${companyInfo.address.city}`
+      )}`,
+    },
+    {
+      icon: Clock,
+      label: "Horaires",
+      value: companyInfo.businessHours || "Lun - Sam: 8h - 19h",
+      href: null,
+    },
+  ];
   return (
     <section id="contact" className="section-padding bg-[var(--color-off-white)]">
       <div className="container-custom mx-auto px-4 md:px-6">
         <SectionHeading
-          title={sectionTitles.contact.title}
-          subtitle={sectionTitles.contact.subtitle}
+          title={sectionTitle.title}
+          subtitle={sectionTitle.subtitle}
         />
 
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12" style={{ marginTop: "30px", marginBottom: "30px" }}>

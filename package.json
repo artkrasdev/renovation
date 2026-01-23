@@ -6,9 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity": "sanity dev",
+    "sanity:build": "sanity build",
+    "sanity:deploy": "sanity deploy"
   },
   "dependencies": {
+    "@sanity/client": "^6.15.0",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.62.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.26",
@@ -17,7 +23,9 @@
     "next": "16.0.10",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "react-leaflet": "^5.0.0"
+    "react-leaflet": "^5.0.0",
+    "sanity": "^3.62.0",
+    "styled-components": "^6.3.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -4,39 +4,41 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import FAQItem from "@/app/components/FAQItem";
-import { sectionTitles } from "@/app/data/content";
-import { faqItems } from "@/app/data/faq";
 import { fadeInUp, staggerContainer, staggerItem } from "@/app/lib/animations";
+import { FAQItem as FAQItemType } from "@/app/types";
 
-export default function FAQSection() {
+interface FAQSectionProps {
+  sectionTitle: {
+    title: string;
+    subtitle: string;
+  };
+  faqItems: FAQItemType[];
+}
+
+export default function FAQSection({ sectionTitle, faqItems }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Split FAQ into two columns
-  const midpoint = Math.ceil(faqItems.length / 2);
-  const leftColumn = faqItems.slice(0, midpoint);
-  const rightColumn = faqItems.slice(midpoint);
-
   return (
     <section className="section-padding bg-white">
       <div className="container-custom mx-auto px-4 md:px-6 flex flex-col items-center justify-center">
         <SectionHeading
-          title={sectionTitles.faq.title}
-          subtitle={sectionTitles.faq.subtitle}
+          title={sectionTitle.title}
+          subtitle={sectionTitle.subtitle}
         />
 
-        {/* Left column */}
+        {/* FAQ Items */}
         <motion.div
           className="bg-[var(--color-off-white)] rounded-2xl p-6 md:p-8"
           variants={staggerItem}
           style={{ width: "100%", marginTop: "30px", marginBottom: "30px", marginLeft: "0px", marginRight: "0px" }}
         >
-          {leftColumn.map((item, index) => (
+          {faqItems.map((item, index) => (
             <FAQItem
-              key={item.id}
+              key={item.id || `faq-${index}`}
               item={item}
               isOpen={openIndex === index}
               onToggle={() => handleToggle(index)}
