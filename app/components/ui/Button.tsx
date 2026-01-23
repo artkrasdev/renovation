@@ -69,6 +69,12 @@ export default function Button({
         initial="rest"
         whileHover={disabled ? undefined : "hover"}
         whileTap={disabled ? undefined : "tap"}
+        onClick={(e) => {
+          if (onClick) {
+            e.preventDefault();
+            onClick();
+          }
+        }}
       >
         {content}
       </motion.a>

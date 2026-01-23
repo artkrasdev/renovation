@@ -8,7 +8,7 @@ export const companyInfo: CompanyInfo = {
   phone: "+33 1 23 45 67 89",
   email: "contact@smailji-multiservices.fr",
   address: {
-    street: "25 rue Joseph Pupier",
+    street: "25 rue J-oseph Pupier",
     city: "Saint-Étienne",
     postalCode: "42100",
     country: "France",

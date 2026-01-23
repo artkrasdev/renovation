@@ -56,18 +56,17 @@ export default function ContactSection() {
           subtitle={sectionTitles.contact.subtitle}
         />
 
-        <div className="grid lg:grid-cols-2 gap-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-          {/* Contact form */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
+          {/* Contact form - Order 3 on mobile, Order 1 on desktop */}
           <motion.div
-            className="bg-white rounded-2xl p-6 md:p-8 shadow-lg"
-            style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}
+            className="order-3 lg:order-1 bg-white rounded-2xl p-6 md:p-8 shadow-lg text-center md:text-left flex flex-col justify-center items-center md:items-start"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideInLeft}
           >
             <h3
-              className="text-2xl font-bold text-[var(--color-text-primary)] mb-6"
+              className="text-2xl font-bold text-[var(--color-text-primary)] mb-6 w-full"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               Demande de Devis Gratuit
@@ -75,64 +74,67 @@ export default function ContactSection() {
             <ContactForm />
           </motion.div>
 
-          {/* Contact info & Map */}
+          {/* Contact info & Map container - Order 1-2 on mobile, Order 2 on desktop */}
           <motion.div
-            className="space-y-6"
-            style={{ display: "flex", flexDirection: "column", gap: "22px" }}
+            className="order-1 lg:order-2 flex flex-col gap-6"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideInRight}
           >
-            {/* Contact cards */}
+            {/* Contact cards - Order 1 on mobile */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-              variants={staggerContainer}
+              className="order-1"
             >
-              {contactInfo.map((info, index) => {
-                const IconComponent = info.icon;
-                const content = (
-                  <motion.div
-                    className={`p-5 bg-white rounded-xl shadow-md transition-shadow h-full ${
-                      info.href ? "cursor-pointer" : ""
-                    }`}
-                    variants={staggerItem}
-                  >
-                    <div className="flex items-start gap-4" style={{ height: "fit-content" }}>
-                      <div className="w-12 h-12 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <IconComponent className="w-6 h-6 text-[var(--color-primary)]" />
+              <motion.div
+                className="grid grid-cols-2 gap-4"
+                variants={staggerContainer}
+              >
+                {contactInfo.map((info, index) => {
+                  const IconComponent = info.icon;
+                  const content = (
+                    <motion.div
+                      className={`p-3 md:p-5 bg-white rounded-xl shadow-md transition-shadow h-full ${
+                        info.href ? "cursor-pointer" : ""
+                      }`}
+                      variants={staggerItem}
+                    >
+                      <div className="flex items-start gap-2 md:gap-4" style={{ height: "fit-content" }}>
+                        <div className="w-8 h-8 md:w-12 md:h-12 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center shrink-0">
+                          <IconComponent className="w-4 h-4 md:w-6 md:h-6 text-[var(--color-primary)]" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs md:text-sm text-[var(--color-text-muted)] mb-1">
+                            {info.label}
+                          </p>
+                          <p className="text-sm md:text-base font-medium text-[var(--color-text-primary)]">
+                            {info.value}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="text-sm text-[var(--color-text-muted)] mb-1">
-                          {info.label}
-                        </p>
-                        <p className="font-medium text-[var(--color-text-primary)]">
-                          {info.value}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
+                    </motion.div>
+                  );
 
-                return info.href ? (
-                  <a
-                    key={index}
-                    href={info.href}
-                    target={info.href.startsWith("http") ? "_blank" : undefined}
-                    rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="h-full"
-                  >
-                    {content}
-                  </a>
-                ) : (
-                  <div key={index} className="h-full">{content}</div>
-                );
-              })}
+                  return info.href ? (
+                    <a
+                      key={index}
+                      href={info.href}
+                      target={info.href.startsWith("http") ? "_blank" : undefined}
+                      rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="h-full"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={index} className="h-full">{content}</div>
+                  );
+                })}
+              </motion.div>
             </motion.div>
 
-            {/* Map */}
+            {/* Map - Order 2 on mobile */}
             <motion.div
-              className="h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg"
+              className="order-2 h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg"
               variants={fadeInUp}
             >
               <Map />

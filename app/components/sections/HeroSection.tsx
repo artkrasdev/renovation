@@ -25,7 +25,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <motion.div
-            className="text-center lg:text-left"
+            className="text-center lg:text-left max-md:flex max-md:items-center max-md:justify-center"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}

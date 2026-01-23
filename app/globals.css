@@ -163,7 +163,7 @@ select {
 
 /* Utility classes */
 .section-padding {
-  padding: 5rem 1.5rem;
+  padding: 5rem 0;
 }
 
 @media (min-width: 768px) {

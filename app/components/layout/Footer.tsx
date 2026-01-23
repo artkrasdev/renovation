@@ -36,7 +36,7 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-white font-semibold text-lg">Informations</h3>
+            <h3 className="text-white! font-semibold text-lg">Informations</h3>
             <nav className="flex flex-col gap-4">
               {legalLinks.map((link) => (
                 <Link

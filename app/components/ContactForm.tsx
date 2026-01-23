@@ -68,9 +68,8 @@ export default function ContactForm() {
       newErrors.projectType = "Veuillez sélectionner un type de projet";
     }
 
-    if (!formData.message.trim()) {
-      newErrors.message = "Le message est requis";
-    } else if (formData.message.trim().length < 20) {
+    // Message is optional, but if provided, validate minimum length
+    if (formData.message.trim() && formData.message.trim().length < 20) {
       newErrors.message = "Le message doit contenir au moins 20 caractères";
     }
 
@@ -141,7 +140,7 @@ export default function ContactForm() {
   return (
     <motion.form
       onSubmit={handleSubmit}
-      className="space-y-5"
+      className="space-y-5 w-full"
       style={{ display: "flex", flexDirection: "column", gap: "22px", marginTop: "25px" }}
       initial="hidden"
       whileInView="visible"
@@ -155,11 +154,11 @@ export default function ContactForm() {
       }}
     >
       {/* Name & Email row */}
-      <div className="grid md:grid-cols-2 gap-5">
-        <motion.div variants={fadeInUp}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <motion.div variants={fadeInUp} className="w-full">
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2 text-left"
           >
             Nom Complet *
           </label>
@@ -177,14 +176,14 @@ export default function ContactForm() {
             placeholder="Jean Dupont"
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+            <p className="mt-1 text-sm text-red-500 text-left">{errors.name}</p>
           )}
         </motion.div>
 
-        <motion.div variants={fadeInUp}>
+        <motion.div variants={fadeInUp} className="w-full">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2 text-left"
           >
             Email *
           </label>
@@ -202,17 +201,17 @@ export default function ContactForm() {
             placeholder="jean.dupont@email.com"
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+            <p className="mt-1 text-sm text-red-500 text-left">{errors.email}</p>
           )}
         </motion.div>
       </div>
 
       {/* Phone & Project type row */}
-      <div className="grid md:grid-cols-2 gap-5">
-        <motion.div variants={fadeInUp}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <motion.div variants={fadeInUp} className="w-full">
           <label
             htmlFor="phone"
-            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2 text-left"
           >
             Téléphone *
           </label>
@@ -230,14 +229,14 @@ export default function ContactForm() {
             placeholder="06 12 34 56 78"
           />
           {errors.phone && (
-            <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+            <p className="mt-1 text-sm text-red-500 text-left">{errors.phone}</p>
           )}
         </motion.div>
 
-        <motion.div variants={fadeInUp}>
+        <motion.div variants={fadeInUp} className="w-full">
           <label
             htmlFor="projectType"
-            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+            className="block text-sm font-medium text-[var(--color-text-primary)] mb-2 text-left"
           >
             Type de Projet *
           </label>
@@ -260,18 +259,18 @@ export default function ContactForm() {
             ))}
           </select>
           {errors.projectType && (
-            <p className="mt-1 text-sm text-red-500">{errors.projectType}</p>
+            <p className="mt-1 text-sm text-red-500 text-left">{errors.projectType}</p>
           )}
         </motion.div>
       </div>
 
       {/* Message */}
-      <motion.div variants={fadeInUp}>
+      <motion.div variants={fadeInUp} className="w-full">
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+          className="block text-sm font-medium text-[var(--color-text-primary)] mb-2 text-left"
         >
-          Décrivez Votre Projet *
+          Décrivez Votre Projet
         </label>
         <textarea
           id="message"
@@ -287,7 +286,7 @@ export default function ContactForm() {
           placeholder="Décrivez votre projet de rénovation, vos attentes, votre budget approximatif..."
         />
         {errors.message && (
-          <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+          <p className="mt-1 text-sm text-red-500 text-left">{errors.message}</p>
         )}
       </motion.div>
 
