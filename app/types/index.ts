@@ -35,14 +35,20 @@ export interface FAQItem {
   answer: string;
 }
 
+// Portfolio image type
+export interface PortfolioImage {
+  src: string;
+  alt?: string;
+  description?: string;
+}
+
 // Portfolio project type
 export interface PortfolioProject {
   id: string;
   title: string;
   category: string;
   description: string;
-  beforeImage: string;
-  afterImage: string;
+  images: PortfolioImage[];
   tags?: string[];
 }
 

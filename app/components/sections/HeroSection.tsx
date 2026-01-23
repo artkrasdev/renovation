@@ -21,7 +21,7 @@ export default function HeroSection() {
       <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-72 h-72 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
 
-      <div className="container-custom mx-auto relative z-10">
+      <div className="container-custom mx-auto relative z-10 max-md:px-[1rem]">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <motion.div

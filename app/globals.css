@@ -281,3 +281,13 @@ select {
   transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
 }
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
