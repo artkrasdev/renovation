@@ -164,12 +164,12 @@ export default function HeroSectionClient({ heroContent, stats }: HeroSectionCli
 
             {/* Decorative badge */}
             <motion.div
-              className="absolute top-8 -right-4 z-30 bg-white rounded-2xl shadow-lg"
+              className="absolute bottom-20 -right-8 z-30 bg-white rounded-2xl shadow-lg"
               variants={fadeIn}
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.5 }}
-              style={{ width: "fit-content", left: "325px", top: "-35px", padding: "15px" }}
+              style={{ width: "fit-content", padding: "15px" }}
             >
               <div className="flex items-center gap-3 w-fit justify-center ps-[10px] pe-[23px]">
                 <Image
@@ -214,7 +214,7 @@ export default function HeroSectionClient({ heroContent, stats }: HeroSectionCli
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
