@@ -70,7 +70,7 @@ export default function HeroSectionClient({ heroContent, stats }: HeroSectionCli
             )}
 
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
               style={{ fontFamily: "var(--font-poppins)" }}
               variants={fadeInUp}
             >
@@ -91,7 +91,7 @@ export default function HeroSectionClient({ heroContent, stats }: HeroSectionCli
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              className="flex flex-row items-center justify-center lg:justify-start gap-4"
               variants={fadeInUp}
             >
               <Button

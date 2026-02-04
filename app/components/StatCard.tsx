@@ -13,7 +13,7 @@ interface StatCardProps {
 export default function StatCard({ stat, index }: StatCardProps) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   useEffect(() => {
     if (!isInView) return;

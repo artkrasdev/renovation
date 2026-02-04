@@ -43,9 +43,9 @@ export default function Button({
   };
 
   const sizeStyles = {
-    sm: "px-4 py-2 text-base gap-1.5",
-    md: "px-6 py-3 text-base gap-2",
-    lg: "px-8 py-4 text-lg gap-2.5",
+    sm: "px-4 py-2 text-sm md:text-base gap-1.5",
+    md: "px-6 py-3 text-sm md:text-base gap-2",
+    lg: "px-8 py-4 text-base md:text-lg gap-2.5",
   };
 
   const disabledStyles = "opacity-50 cursor-not-allowed";
