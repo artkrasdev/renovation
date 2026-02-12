@@ -1,5 +1,7 @@
 import {client, urlFor} from '../sanity'
 
+const fetchOptions = { next: { revalidate: 60 } } as const
+
 // Hero Content Query
 export async function getHeroContent() {
   const query = `*[_type == "hero"][0]{
@@ -11,7 +13,7 @@ export async function getHeroContent() {
     mainImage,
     secondaryImage
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
 
 // Stats Query
@@ -21,7 +23,7 @@ export async function getStats() {
     suffix,
     label
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
 
 // Services Query
@@ -34,7 +36,7 @@ export async function getServices() {
     features,
     image
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
 
 // Portfolio Projects Query
@@ -50,8 +52,8 @@ export async function getPortfolioProjects() {
       description
     }
   }`
-  const results = await client.fetch(query)
-  
+  const results = await client.fetch(query, {}, fetchOptions)
+
   // Process images to get URLs using urlFor
   return results.map((project: any) => ({
     ...project,
@@ -73,7 +75,7 @@ export async function getProcessSteps() {
     description,
     icon
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
 
 // Process Image Query
@@ -82,7 +84,7 @@ export async function getProcessImage() {
     image,
     alt
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
 
 // FAQ Items Query
@@ -92,7 +94,7 @@ export async function getFAQItems() {
     question,
     answer
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
 
 // Section Titles Query
@@ -102,8 +104,8 @@ export async function getSectionTitles() {
     title,
     subtitle
   }`
-  const results = await client.fetch(query)
-  
+  const results = await client.fetch(query, {}, fetchOptions)
+
   // Convert array to object keyed by sectionKey
   const titles: Record<string, {title: string; subtitle: string}> = {}
   results.forEach((item: {sectionKey: string; title: string; subtitle: string}) => {
@@ -112,7 +114,7 @@ export async function getSectionTitles() {
       subtitle: item.subtitle,
     }
   })
-  
+
   return titles
 }
 
@@ -127,5 +129,5 @@ export async function getCompanyInfo() {
     siret,
     rcs
   }`
-  return await client.fetch(query)
+  return await client.fetch(query, {}, fetchOptions)
 }
