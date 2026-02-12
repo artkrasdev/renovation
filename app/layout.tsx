@@ -29,6 +29,14 @@ export const metadata: Metadata = {
       "Transformez votre appartement avec nos experts en rénovation. Services complets de A à Z.",
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: "/opengraph.webp",
+        width: 1200,
+        height: 630,
+        alt: "Smailji Multi-Services",
+      },
+    ],
   },
 };
 
