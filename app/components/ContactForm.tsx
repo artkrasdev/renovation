@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Loader2, CheckCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { fadeInUp } from "@/app/lib/animations";
+
+const EMAILJS_SERVICE_ID = "service_u0r63uj";
+const EMAILJS_TEMPLATE_ID = "template_yzp3m4n";
+const EMAILJS_PUBLIC_KEY = "Jnb-BGYejg0fUONS8";
 
 interface FormData {
   name: string;
@@ -93,11 +98,27 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          project_type: formData.projectType,
+          message: formData.message || "Aucun message fourni",
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    } catch {
+      setIsSubmitting(false);
+      setErrors({ message: "Erreur lors de l'envoi. Veuillez réessayer." });
+      return;
+    }
 
     // Reset form after showing success message
     setTimeout(() => {
@@ -115,20 +136,31 @@ export default function ContactForm() {
   if (isSubmitted) {
     return (
       <motion.div
-        className="bg-green-50 rounded-xl p-8 text-center"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="flex flex-col items-center justify-center text-center px-6"
+        style={{ marginTop: "25px", minHeight: "450px" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-8 h-8 text-green-600" />
-        </div>
+        <motion.div
+          className="w-20 h-20 rounded-full flex items-center justify-center mb-6"
+          style={{ backgroundColor: "rgba(4, 47, 255, 0.1)" }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+        >
+          <CheckCircle className="w-10 h-10" style={{ color: "var(--color-primary)" }} />
+        </motion.div>
         <h3
-          className="text-xl font-bold text-green-800 mb-2"
-          style={{ fontFamily: "var(--font-poppins)" }}
+          className="text-2xl font-bold mb-3"
+          style={{ fontFamily: "var(--font-poppins)", color: "var(--color-text-primary)" }}
         >
           Message Envoyé !
         </h3>
-        <p className="text-green-700">
+        <p
+          className="text-base max-w-sm"
+          style={{ color: "var(--color-text-secondary)", lineHeight: 1.6 }}
+        >
           Merci pour votre message. Nous vous répondrons dans les plus brefs délais.
         </p>
       </motion.div>

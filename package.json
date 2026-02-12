@@ -12,6 +12,7 @@
     "sanity:deploy": "sanity deploy"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@sanity/client": "^6.15.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.62.0",
