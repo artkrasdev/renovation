@@ -24,7 +24,7 @@ export const navigation: NavItem[] = [
 ];
 
 export const heroContent = {
-  title: "Rénovation d'Appartements",
+  title: "Rénovation d'Appartements & Multiservice à Saint-Étienne",
   subtitle:
     "Entrez dans un monde où l'art de la rénovation est méticuleusement façonné pour allier élégance intemporelle et innovation moderne. Transformez vos espaces de vie en havres de luxe et de satisfaction.",
   ctaText: "Démarrer un Projet",
@@ -106,7 +106,7 @@ export const sectionTitles = {
 
 export const footerContent = {
   description:
-    "Votre partenaire de confiance pour la rénovation d'appartements à Paris et en Île-de-France. Qualité, professionnalisme et satisfaction garantis.",
+    "Votre partenaire de confiance pour la rénovation d'appartements et multiservices à Saint-Étienne et dans toute la Loire (42). Qualité, professionnalisme et satisfaction garantis.",
   quickLinks: [
     { label: "Accueil", href: "#accueil" },
     { label: "Services", href: "#services" },
