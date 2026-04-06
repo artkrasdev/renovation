@@ -15,6 +15,7 @@
     "@emailjs/browser": "^4.4.1",
     "@sanity/client": "^6.15.0",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/locale-fr-fr": "^1.2.30",
     "@sanity/vision": "^3.62.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
