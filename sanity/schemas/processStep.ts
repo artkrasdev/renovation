@@ -22,13 +22,15 @@ export default defineType({
       name: 'title',
       title: 'Titre',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Consultation Initiale',
+      validation: (Rule) => Rule.required().max(60),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Embarquez dans votre aventure de rénovation. Partagez votre vision et nous créerons ensemble le projet de vos rêves.',
+      validation: (Rule) => Rule.required().max(180),
     }),
     defineField({
       name: 'icon',

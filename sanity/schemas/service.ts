@@ -19,13 +19,15 @@ export default defineType({
       name: 'title',
       title: 'Titre',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Rénovation de Cuisine',
+      validation: (Rule) => Rule.required().max(60),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Transformez votre cuisine en un espace moderne et fonctionnel. De la conception des plans à l’installation des équipements, nous créons la cuisine de vos rêves.',
+      validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
       name: 'icon',
@@ -42,7 +44,10 @@ export default defineType({
       name: 'features',
       title: 'Caractéristiques',
       type: 'array',
-      of: [{type: 'string'}],
+      of: [{
+        type: 'string',
+        validation: (Rule) => Rule.max(60),
+      }],
       description: 'Liste des caractéristiques clés ou avantages pour ce service',
     }),
     defineField({

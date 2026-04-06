@@ -15,14 +15,17 @@ export default defineType({
       name: 'suffix',
       title: 'Suffixe',
       type: 'string',
+      placeholder: '+',
       description: 'Texte après le nombre (ex: "+", "%")',
       initialValue: '+',
+      validation: (Rule) => Rule.max(5),
     }),
     defineField({
       name: 'label',
       title: 'Libellé',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Projets Réalisés',
+      validation: (Rule) => Rule.required().max(40),
     }),
     defineField({
       name: 'order',

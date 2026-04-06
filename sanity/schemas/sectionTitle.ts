@@ -28,13 +28,15 @@ export default defineType({
       name: 'title',
       title: 'Titre',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Votre Rénovation en Trois Étapes Simples',
+      validation: (Rule) => Rule.required().max(80),
     }),
     defineField({
       name: 'subtitle',
       title: 'Sous-titre',
       type: 'text',
-      validation: (Rule) => Rule.required(),
+      placeholder: 'Des solutions complètes pour transformer votre appartement selon vos envies',
+      validation: (Rule) => Rule.required().max(160),
     }),
   ],
   preview: {
